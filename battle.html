@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Quiz Battle</title>
+</head>
+<body>
+    <script>
+        // Redirect to main page with battle parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        window.location.href = '/?battle=' + (urlParams.get('id') || '') + '&code=' + (urlParams.get('code') || '');
+    </script>
+</body>
+</html>
