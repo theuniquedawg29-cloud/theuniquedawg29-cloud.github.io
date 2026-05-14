@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quant-Elite - Live Quiz Battle</title>
+    <meta name="description" content="Join a live quiz battle on Quant-Elite. Challenge your friends and compete in real-time.">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Open Graph for sharing -->
+    <meta property="og:title" content="Quant-Elite - Live Quiz Battle">
+    <meta property="og:description" content="Join me for a live quiz battle on Quant-Elite!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theuniquedawg29-cloud.github.io/">
+    <meta property="og:image" content="https://theuniquedawg29-cloud.github.io/og-image.png">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Quant-Elite - Live Quiz Battle">
+    <meta name="twitter:description" content="Join me for a live quiz battle on Quant-Elite!">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            text-align: center;
+            animation: slideUp 0.5s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #e0e0e0;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 14px;
+            color: #555;
+        }
+        
+        .info-box strong {
+            color: #333;
+        }
+        
+        .footer {
+            color: #999;
+            font-size: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .error-box {
+            background: #fee;
+            border-left: 4px solid #f66;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 14px;
+            color: #a33;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎯</div>
+        
+        <h1>Quant-Elite</h1>
+        <p class="subtitle">Live Quiz Battle Challenge</p>
+        
+        <div class="status">
+            <div class="spinner"></div>
+            <span>Opening app...</span>
+        </div>
+        
+        <div class="error-box" id="errorBox"></div>
+        
+        <div class="info-box">
+            <strong>📱 You're being redirected</strong><br>
+            If the app doesn't open automatically, tap the button below to join the battle.
+        </div>
+        
+        <div class="button-group">
+            <button class="btn btn-primary" id="openAppBtn">Open in Quant-Elite</button>
+            <button class="btn btn-secondary" id="downloadBtn">Download App</button>
+        </div>
+        
+        <div class="footer">
+            <p>Quant-Elite © 2026 | Live Quiz Battle Platform</p>
+        </div>
+    </div>
+
+    <script>
+        // Get battle ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const battleId = urlParams.get('battle') || '';
+        const userId = urlParams.get('user') || '';
+        const battleCode = urlParams.get('code') || '';
+        
+        // Detect if user is on mobile
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        const isAndroid = /Android/i.test(navigator.userAgent);
+        
+        // Deep link scheme for your app
+        const DEEP_LINK_SCHEME = 'quantelite://';
+        const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.quantelite.quiz';
+        const APP_STORE_URL = 'https://apps.apple.com/app/quant-elite/id123456789';
+        
+        function generateDeepLink() {
+            let deepLink = DEEP_LINK_SCHEME + 'battle';
+            const params = [];
+            
+            if (battleId) params.push(`battle=${encodeURIComponent(battleId)}`);
+            if (userId) params.push(`user=${encodeURIComponent(userId)}`);
+            if (battleCode) params.push(`code=${encodeURIComponent(battleCode)}`);
+            
+            if (params.length > 0) {
+                deepLink += '?' + params.join('&');
+            }
+            
+            return deepLink;
+        }
+        
+        function openApp() {
+            if (!isMobile) {
+                showError('Please open this link on your mobile device or download the Quant-Elite app.');
+                return;
+            }
+            
+            const deepLink = generateDeepLink();
+            
+            if (isAndroid) {
+                // For Android, try opening with deep link, fallback to Play Store
+                window.location.href = deepLink;
+                
+                setTimeout(() => {
+                    // If app didn't open in 2 seconds, redirect to Play Store
+                    window.location.href = PLAY_STORE_URL;
+                }, 2000);
+            } else {
+                // For iOS
+                window.location.href = deepLink;
+                
+                setTimeout(() => {
+                    // If app didn't open in 2 seconds, redirect to App Store
+                    window.location.href = APP_STORE_URL;
+                }, 2000);
+            }
+        }
+        
+        function downloadApp() {
+            if (isAndroid) {
+                window.location.href = PLAY_STORE_URL;
+            } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                window.location.href = APP_STORE_URL;
+            } else {
+                showError('Please visit the Play Store or App Store from your mobile device.');
+            }
+        }
+        
+        function showError(message) {
+            const errorBox = document.getElementById('errorBox');
+            errorBox.textContent = message;
+            errorBox.style.display = 'block';
+        }
+        
+        // Attach event listeners
+        document.getElementById('openAppBtn').addEventListener('click', openApp);
+        document.getElementById('downloadBtn').addEventListener('click', downloadApp);
+        
+        // Auto-attempt to open app on page load if on mobile
+        if (isMobile && (battleId || battleCode)) {
+            setTimeout(openApp, 500);
+        }
+        
+        // Log deep link info for debugging
+        console.log('Deep Link Info:', {
+            battleId,
+            userId,
+            battleCode,
+            isMobile,
+            isAndroid,
+            deepLink: generateDeepLink()
+        });
+    </script>
+</body>
+</html>
